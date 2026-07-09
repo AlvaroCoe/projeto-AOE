@@ -1,0 +1,4 @@
+# React + Vite
+
+npm i react-router-dom axios react-toastify yup react-hook-form @hookform/resolvers
+

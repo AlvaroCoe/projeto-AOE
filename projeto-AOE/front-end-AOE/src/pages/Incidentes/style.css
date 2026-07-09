@@ -1,0 +1,339 @@
+/* ==========================
+   CONTAINER
+========================== */
+
+.incidentes-container {
+    max-width: 1400px;
+    width: 95%;
+    margin: 40px auto;
+    padding: 20px;
+    color: #1f2937;
+}
+
+/* ==========================
+   CABEÇALHO
+========================== */
+
+.incidentes-header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    color: #fff;
+    border-radius: 18px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
+
+.incidentes-header h1 {
+    font-size: 2.3rem;
+    margin-bottom: 10px;
+}
+
+.categoria {
+    font-size: 1rem;
+    opacity: .9;
+}
+
+/* ==========================
+   LAYOUT
+========================== */
+
+.incidentes-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* ==========================
+   SEÇÕES
+========================== */
+
+.formulario-section,
+.informacoes-section {
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+
+/* ==========================
+   ALERTA
+========================== */
+
+.alerta-critico {
+    background: #fff3cd;
+    color: #856404;
+    border-left: 5px solid #ffc107;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* ==========================
+   MENSAGENS
+========================== */
+
+.mensagem {
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.mensagem-sucesso {
+    background: #d4edda;
+    color: #155724;
+}
+
+.mensagem-erro {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ==========================
+   FORMULÁRIO
+========================== */
+
+.incidentes-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #111827;
+}
+
+.obrigatorio {
+    color: red;
+}
+
+/* ==========================
+   CAMPOS
+========================== */
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    font-size: 15px;
+    box-sizing: border-box;
+    background: #fff;
+    transition: .3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+/* ==========================
+   GRAVIDADE
+========================== */
+
+.gravidade-critica {
+    border-color: #dc2626;
+}
+
+.gravidade-alta {
+    border-color: #ea580c;
+}
+
+.gravidade-media {
+    border-color: #ca8a04;
+}
+
+.gravidade-baixa {
+    border-color: #16a34a;
+}
+
+/* ==========================
+   BOTÕES
+========================== */
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.btn-submit,
+.btn-reset {
+    border: none;
+    padding: 14px 30px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .3s;
+    font-size: 15px;
+}
+
+.btn-submit {
+    background: #0f172a;
+    color: white;
+}
+
+.btn-submit:hover {
+    background: #1e3a8a;
+}
+
+.btn-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+.btn-reset {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+.btn-reset:hover {
+    background: #d1d5db;
+}
+
+/* ==========================
+   INSTRUÇÕES
+========================== */
+
+.informacoes-section h2 {
+    margin-bottom: 20px;
+    color: #111827;
+}
+
+.instrucoes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.instrucao-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 18px;
+    transition: .3s;
+}
+
+.instrucao-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,.08);
+}
+
+.instrucao-card h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #0f172a;
+}
+
+.instrucao-card p {
+    color: #475569;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+/* ==========================
+   RESPONSIVO
+========================== */
+
+@media (max-width: 1100px) {
+
+    .incidentes-main {
+        grid-template-columns: 1fr;
+    }
+
+    .informacoes-section {
+        margin-top: 20px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .instrucoes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+    }
+
+    .btn-submit,
+    .btn-reset {
+        width: 100%;
+    }
+
+    .incidentes-header {
+        text-align: center;
+    }
+
+    .incidentes-header h1 {
+        font-size: 1.8rem;
+    }
+
+}
+
+/* ==========================
+   CORREÇÃO DOS CAMPOS
+========================== */
+
+.incidentes-container {
+    position: relative;
+}
+
+.incidentes-form {
+    position: relative;
+}
+
+.incidentes-form input,
+.incidentes-form select,
+.incidentes-form textarea {
+    position: relative;
+    width: 100%;
+    pointer-events: auto;
+    user-select: text;
+    opacity: 1;
+    cursor: text;
+}
+
+
+.incidentes-form select {
+    cursor: pointer;
+}
+
+
+.incidentes-form input:focus,
+.incidentes-form select:focus,
+.incidentes-form textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}

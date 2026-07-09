@@ -1,0 +1,219 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E TOKENS DE DESIGN (PADRÃO HCE)
+   ========================================================================== */
+.manutencao-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #334155;
+  box-sizing: border-box;
+}
+
+.manutencao-container * {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   INTRODUÇÃO
+   ========================================================================== */
+.manutencao-intro {
+  margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.manutencao-intro h1 {
+  color: #0b2447;
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.025em;
+}
+
+.manutencao-intro p {
+  color: #475569;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 800px;
+}
+
+/* ==========================================================================
+   CARDS PADRÃO COESÃO VISUAL (SOMBRAS E BORDAS ARREDONDADAS)
+   ========================================================================== */
+.manutencao-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  border: 1px solid #e2e8f0;
+  padding: 2.5rem;
+  margin-bottom: 3.5rem;
+}
+
+/* ==========================================================================
+   FORMULÁRIO E INPUTS
+   ========================================================================== */
+.manutencao-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.manutencao-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.manutencao-form-group label {
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.manutencao-input,
+.manutencao-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.manutencao-input:focus,
+.manutencao-textarea:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.15);
+}
+
+.manutencao-input::placeholder,
+.manutencao-textarea::placeholder {
+  color: #94a3b8;
+}
+
+.manutencao-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.manutencao-char-counter {
+  font-size: 0.75rem;
+  color: #64748b;
+  text-align: right;
+  margin-top: 0.25rem;
+}
+
+/* ==========================================================================
+   BOTÃO (PADRÃO AZUL PRINCIPAL COM TRANSIÇÃO HOVER)
+   ========================================================================== */
+.manutencao-button {
+  background-color: #0066cc;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.875rem 1.75rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.manutencao-button:hover {
+  background-color: #0b2447;
+}
+
+.manutencao-button:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   SEÇÃO INFORMATIVA (GRID & INFOCARDS)
+   ========================================================================== */
+.manutencao-processo-secao h2 {
+  color: #0b2447;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.manutencao-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.manutencao-card-info {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+  border: 1px solid #e2e8f0;
+  padding: 1.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.manutencao-card-info:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(15, 23, 42, 0.08);
+}
+
+.manutencao-card-info h3 {
+  color: #0f172a;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.manutencao-card-info p {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+
+/* TABLETS (Design Adaptativo) */
+@media (max-width: 1024px) {
+  .manutencao-grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* SMARTPHONES (Mobile-First Downscaling) */
+@media (max-width: 768px) {
+  .manutencao-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .manutencao-intro h1 {
+    font-size: 1.75rem;
+  }
+
+  .manutencao-intro p {
+    font-size: 1rem;
+  }
+
+  .manutencao-card {
+    padding: 1.5rem;
+  }
+
+  .manutencao-grid-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .manutencao-button {
+    width: 100%;
+    align-self: stretch;
+    text-align: center;
+  }
+}
