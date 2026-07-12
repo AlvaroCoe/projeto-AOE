@@ -26,9 +26,29 @@ public class TripulacaoController {
         return service.salvar(dto);
     }
 
+
     @GetMapping
     public List<TripulacaoResponseDTO> listar(){
         return service.listar();
+    }
+
+
+    // EDITAR
+    @PutMapping("/{id}")
+    public TripulacaoResponseDTO editar(
+            @PathVariable Long id,
+            @RequestBody @Valid TripulacaoRequestDTO dto){
+
+        return service.editar(id, dto);
+    }
+
+
+    // DELETAR
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable Long id){
+
+        service.deletar(id);
     }
 
 }

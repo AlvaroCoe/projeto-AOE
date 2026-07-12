@@ -56,5 +56,35 @@ public class TripulacaoService {
 
         return dto;
     }
+    public TripulacaoResponseDTO editar(Long id, TripulacaoRequestDTO dto){
+
+        TripulacaoEntity entity = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tripulante não encontrado"));
+
+
+        entity.setNomeFuncionario(dto.getNomeFuncionario());
+        entity.setFuncao(dto.getFuncao());
+        entity.setPlataforma(dto.getPlataforma());
+        entity.setDataInicio(dto.getDataInicio());
+        entity.setDataFim(dto.getDataFim());
+        entity.setRegime(dto.getRegime());
+
+
+        entity = repository.save(entity);
+
+
+        return converter(entity);
+    }
+
+
+
+    public void deletar(Long id){
+
+        if(!repository.existsById(id)){
+            throw new RuntimeException("Registro não encontrado");
+        }
+
+        repository.deleteById(id);
+    }
 
 }
