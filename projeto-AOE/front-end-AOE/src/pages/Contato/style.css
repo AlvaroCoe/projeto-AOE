@@ -276,3 +276,16 @@
     font-size: 1.3rem;
   }
 }
+
+
+:root {
+ --bg:#fff;
+ --card:#fff;
+ --text:#000;
+}
+
+.dark {
+ --bg:#020617;
+ --card:#0f172a;
+ --text:#fff;
+}

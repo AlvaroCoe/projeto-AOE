@@ -204,3 +204,53 @@
     background: #e2e8f0;
     margin: 40px 0;
 }
+
+/* --- BOTÕES DE AÇÃO DOS CARDS --- */
+
+.trip-card button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 8px;
+}
+
+
+/* Botão editar */
+
+.btn-editar {
+    background-color: #0b2447;
+    color: white;
+}
+
+
+.btn-editar:hover {
+    background-color: #143059;
+    transform: translateY(-1px);
+}
+
+
+
+/* Botão excluir */
+
+.btn-excluir {
+    background-color: #dc2626;
+    color: white;
+}
+
+
+.btn-excluir:hover {
+    background-color: #b91c1c;
+    transform: translateY(-1px);
+}
+
+
+/* Quando clicar */
+
+.trip-card button:active {
+    transform: scale(0.97);
+}

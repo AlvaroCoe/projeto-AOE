@@ -13,7 +13,9 @@ import Incidentes from './pages/Incidentes'
 function App() {
   return (
     <BrowserRouter>
+
       <Header />
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/quem-somos" element={<QuemSomos />} />

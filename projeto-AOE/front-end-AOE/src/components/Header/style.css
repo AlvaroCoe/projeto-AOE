@@ -40,7 +40,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 32px;
+  gap: 24px;
 }
 
 .nav-item {
@@ -105,4 +105,52 @@
   .logo-text {
     font-size: 1.1rem;
   }
+}
+
+/* BOTÃO DE TEMA */
+
+.theme-button {
+
+  background: transparent;
+  color: #f8fafc;
+
+  border: 1px solid rgba(255,255,255,0.4);
+
+  padding: 8px 14px;
+
+  border-radius: 20px;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+}
+
+
+.theme-button:hover {
+
+  background: rgba(255,255,255,0.15);
+
+  transform: translateY(-1px);
+
+}
+
+body.dark-mode {
+
+    background-color: #020617;
+    color: white;
+
+}
+
+
+body.dark-mode .trip-card,
+body.dark-mode .cadastro-section {
+
+    background-color: #0f172a;
+    color: white;
+
 }

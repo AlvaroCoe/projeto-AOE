@@ -193,3 +193,178 @@ a {
 
 
 }
+
+/* MODO ESCURO */
+
+/* ==========================
+   MODO ESCURO
+========================== */
+
+body.dark-mode {
+
+    background-color: #020617;
+    color: #f8fafc;
+
+}
+
+
+/* textos gerais */
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode label {
+
+    color: #f8fafc;
+
+}
+
+
+/* Cards */
+
+body.dark-mode .trip-card,
+body.dark-mode .cadastro-section {
+
+    background: #0f172a;
+    border-color: #334155;
+
+}
+
+
+/* Formulários */
+
+body.dark-mode input {
+
+    background: #1e293b;
+    color: white;
+    border-color: #475569;
+
+}
+
+
+body.dark-mode input::placeholder {
+
+    color: #94a3b8;
+
+}
+
+
+/* Separadores */
+
+body.dark-mode hr {
+
+    border-color: #334155;
+
+}
+
+
+/* títulos das plataformas */
+
+body.dark-mode .plataforma-title {
+
+    color: #93c5fd;
+
+}
+
+
+/* textos dos cards */
+
+body.dark-mode .trip-funcao,
+body.dark-mode .trip-periodo {
+
+    color: #cbd5e1;
+
+}
+
+
+/* Botões */
+
+body.dark-mode button {
+
+    color: white;
+
+}
+
+/* =========================
+   MODO ESCURO GLOBAL
+========================= */
+
+body.dark-mode {
+    background: #0f172a;
+    color: #e2e8f0;
+}
+
+
+/* textos gerais */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode li,
+body.dark-mode strong {
+    color: #e2e8f0;
+}
+
+
+/* Cards brancos */
+body.dark-mode .highlight-card,
+body.dark-mode .map-list,
+body.dark-mode .safety-card,
+body.dark-mode .trip-card,
+body.dark-mode .cadastro-section {
+    background: #1e293b;
+    border-color: #334155;
+}
+
+
+/* textos dos cards */
+body.dark-mode .highlight-card p,
+body.dark-mode .section-header p,
+body.dark-mode .map-list li,
+body.dark-mode .safety-card p,
+body.dark-mode .trip-funcao,
+body.dark-mode .trip-periodo {
+    color: #cbd5e1;
+}
+
+
+/* títulos */
+body.dark-mode .card-value,
+body.dark-mode .trip-nome,
+body.dark-mode .trip-regime,
+body.dark-mode .map-list strong {
+    color: #f8fafc;
+}
+
+
+/* inputs */
+body.dark-mode input {
+    background: #0f172a;
+    color: white;
+    border-color: #475569;
+}
+
+
+/* fundo das páginas */
+body.dark-mode .home-page,
+body.dark-mode .tripulacao-container {
+    color: #e2e8f0;
+}
+
+
+/* botão tema */
+.theme-button {
+    background: transparent;
+    border: 1px solid #94a3b8;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.theme-button:hover {
+    background: rgba(0, 0, 0, 0.15);
+}
