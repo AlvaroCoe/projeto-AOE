@@ -1,159 +1,274 @@
-import React, { useState } from "react";
-import "./styles.css";
+import './styles.css'
+
+import api from '../../services/api'
+import { useState, useEffect } from 'react'
+
+import { toast } from 'react-toastify'
 
 export default function Manutencoes() {
-  // Estado centralizado espelhando a entidade Java Spring Boot
-  const [manutencao, setManutencao] = useState({
-    idEquipamento: "",
-    criticidade: "",
-    descricaoFalha: "",
-  });
 
-  // Manipulador dinâmico para inputs do formulário
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setManutencao((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+    const [manutencoes, setManutencoes] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
 
-  // Submissão do formulário e preparação para integração
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    const [idEquipamento, setIdEquipamento] = useState('')
+    const [criticidade, setCriticidade] = useState('')
+    const [descricaoFalha, setDescricaoFalha] = useState('')
 
-    // Validação básica de consistência antes do envio
-    if (!manutencao.idEquipamento || !manutencao.criticidade || !manutencao.descricaoFalha) {
-      alert("Por favor, preencha todos os campos obrigatórios.");
-      return;
+    const [cadastroStatus, setCadastroStatus] = useState(null)
+
+    // controla edição
+    const [editando, setEditando] = useState(false)
+    const [idEditando, setIdEditando] = useState(null)
+
+    // Carrega a lista ao abrir a tela
+    useEffect(() => {
+        fetchManutencoes()
+    }, [])
+
+    async function fetchManutencoes() {
+        try {
+            setLoading(true)
+            const res = await api.get('/api/manutencoes')
+            setManutencoes(res.data)
+        } catch (err) {
+            setError(err.message)
+        } finally {
+            setLoading(false)
+        }
     }
 
-    console.log("Dados capturados com sucesso para envio:", manutencao);
+    async function handleCadastrar(e) {
+        e.preventDefault()
 
-    /* 
-      ==================================================================
-      INTEGRAÇÃO FUTURA COM SPRING BOOT (POST)
-      ==================================================================
-      URL: http://localhost:8080/manutencoes
-      Method: POST
-      Headers: { "Content-Type": "application/json" }
-      Body: JSON.stringify(manutencao)
-      
-      Exemplo de implementação com Fetch API:
-      
-      fetch("http://localhost:8080/manutencoes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(manutencao)
-      })
-      .then(response => {
-        if (!response.ok) throw new Error("Erro ao salvar manutenção.");
-        return response.json();
-      })
-      .then(data => {
-        alert("Solicitação de manutenção aberta com sucesso!");
-        // Limpar o formulário após o sucesso
-        setManutencao({ idEquipamento: "", criticidade: "", descricaoFalha: "" });
-      })
-      .catch(error => {
-        console.error("Erro na requisição:", error);
-        alert("Falha ao conectar com o servidor.");
-      });
-    */
-  };
+        const dados = {
+            idEquipamento,
+            criticidade,
+            descricaoFalha
+        }
 
-  return (
-    <div className="manutencao-container">
-      {/* Seção de Introdução */}
-      <section className="manutencao-intro">
-        <h1>Solicitação de Manutenção de Ativos</h1>
-        <p>
-          Formulário para abertura de ordens de serviço em equipamentos industriais,
-          permitindo registrar falhas, identificar criticidade e iniciar processos de manutenção.
-        </p>
-      </section>
+        try {
+            if (editando) {
+                await api.put(
+                    `/api/manutencoes/${idEditando}`,
+                    dados
+                )
+                toast.success(
+                    "Solicitação de manutenção atualizada!"
+                )
+            } else {
+                await api.post(
+                    '/api/manutencoes',
+                    dados
+                )
+                toast.success(
+                    "Solicitação de manutenção aberta!"
+                )
+            }
 
-      {/* Card Principal - Formulário */}
-      <main className="manutencao-card">
-        <form onSubmit={handleSubmit} className="manutencao-form">
-          <div className="manutencao-form-group">
-            <label htmlFor="idEquipamento">ID do Equipamento *</label>
-            <input
-              type="text"
-              id="idEquipamento"
-              name="idEquipamento"
-              className="manutencao-input"
-              placeholder="Ex: TURB-001, GER-450, COMP-230"
-              value={manutencao.idEquipamento}
-              onChange={handleChange}
-              maxLength={50}
-              required
-            />
-          </div>
+            limparFormulario()
+            fetchManutencoes()
 
-          <div className="manutencao-form-group">
-            <label htmlFor="criticidade">Criticidade *</label>
-            <select
-              id="criticidade"
-              name="criticidade"
-              className="manutencao-input"
-              value={manutencao.criticidade}
-              onChange={handleChange}
-              required
-            >
-              <option value="" disabled>Selecione a criticidade...</option>
-              <option value="Baixa">Baixa</option>
-              <option value="Média">Média</option>
-              <option value="Alta">Alta</option>
-              <option value="Crítica">Crítica</option>
-            </select>
-          </div>
+        } catch (err) {
+            setCadastroStatus(
+                "Erro: " + err.message
+            )
+        }
+    }
 
-          <div className="manutencao-form-group">
-            <label htmlFor="descricaoFalha">Descrição da Falha *</label>
-            <textarea
-              id="descricaoFalha"
-              name="descricaoFalha"
-              className="manutencao-textarea"
-              placeholder="Detalhe o problema encontrado no equipamento..."
-              value={manutencao.descricaoFalha}
-              onChange={handleChange}
-              maxLength={500}
-              required
-            ></textarea>
-            <span className="manutencao-char-counter">
-              {manutencao.descricaoFalha.length} / 500 caracteres
-            </span>
-          </div>
+    function iniciarEdicao(item) {
+        setEditando(true)
+        setIdEditando(item.id)
 
-          <button type="submit" className="manutencao-button">
-            Enviar Solicitação
-          </button>
-        </form>
-      </main>
+        setIdEquipamento(item.idEquipamento)
+        setCriticidade(item.criticidade)
+        setDescricaoFalha(item.descricaoFalha)
 
-      {/* Seção Informativa de Processos */}
-      <section className="manutencao-processo-secao">
-        <h2>Processo de Manutenção</h2>
-        <div className="manutencao-grid-cards">
-          <div className="manutencao-card-info">
-            <h3>Identificação do Equipamento</h3>
-            <p>O equipamento é identificado através do seu código operacional.</p>
-          </div>
-          
-          <div className="manutencao-card-info">
-            <h3>Avaliação da Criticidade</h3>
-            <p>A equipe técnica avalia a gravidade da falha registrada.</p>
-          </div>
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
 
-          <div className="manutencao-card-info">
-            <h3>Execução da Ordem de Serviço</h3>
-            <p>A solicitação segue para análise e execução da manutenção.</p>
-          </div>
+    async function handleExcluir(id) {
+        const confirmar = window.confirm(
+            "Deseja realmente excluir esta solicitação?"
+        )
+
+        if (!confirmar)
+            return
+
+        try {
+            await api.delete(
+                `/api/manutencoes/${id}`
+            )
+            toast.success(
+                "Solicitação excluída com sucesso!"
+            )
+            fetchManutencoes()
+
+        } catch (err) {
+            toast.error(
+                "Erro ao excluir registro"
+            )
+        }
+    }
+
+    function limparFormulario() {
+        setIdEquipamento('')
+        setCriticidade('')
+        setDescricaoFalha('')
+
+        setEditando(false)
+        setIdEditando(null)
+    }
+
+    return (
+        <div className="manutencao-container">
+
+            {/* Seção de Introdução */}
+            <section className="manutencao-intro">
+                <h1>Solicitação de Manutenção de Ativos</h1>
+                <p>
+                    Formulário para abertura de ordens de serviço em equipamentos industriais,
+                    permitindo registrar falhas, identificar criticidade e iniciar processos de manutenção.
+                </p>
+            </section>
+
+            {/* Card Principal - Formulário */}
+            <section className="cadastro-section"
+                style={{
+                    marginBottom: '40px',
+                    padding: '20px',
+                    border: '1px solid #ccc',
+                    borderRadius: '8px'
+                }}>
+
+                <h2>
+                    {
+                        editando
+                            ? "Editar Solicitação de Manutenção"
+                            : "Abrir Solicitação de Manutenção"
+                    }
+                </h2>
+
+                <form
+                    onSubmit={handleCadastrar}
+                    style={{
+                        display: 'grid',
+                        gap: '10px',
+                        maxWidth: '400px'
+                    }}>
+
+                    <input
+                        placeholder="ID do Equipamento" 
+                        value={idEquipamento}
+                        onChange={(e) => setIdEquipamento(e.target.value)}
+                        maxLength={50}
+                        required
+                    />
+
+                    <select
+                        value={criticidade}
+                        onChange={(e) => setCriticidade(e.target.value)}
+                        required
+                    >
+                        <option value="" disabled>Nível Crítico...</option>
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média">Média</option>
+                        <option value="Alta">Alta</option>
+                        <option value="Crítica">Crítica</option>
+                    </select>
+
+                    <textarea
+                        placeholder="Detalhe o problema encontrado no equipamento..."
+                        value={descricaoFalha}
+                        onChange={(e) => setDescricaoFalha(e.target.value)}
+                        maxLength={500}
+                        required
+                        style={{ minHeight: '100px', fontFamily: 'inherit' }}
+                    ></textarea>
+
+                    <button type="submit">
+                        {
+                            editando
+                                ? "Salvar Alterações"
+                                : "Enviar Solicitação"
+                        }
+                    </button>
+
+                    {
+                        editando &&
+                        <button
+                            type="button"
+                            onClick={limparFormulario}
+                        >
+                            Cancelar edição
+                        </button>
+                    }
+
+                </form>
+
+                {
+                    cadastroStatus &&
+                    <p className="cadastro-status-msg">{cadastroStatus}</p>
+                }
+
+            </section>
+
+            <hr className="form-divider" />
+
+            <h1>
+                Ativos em Manutenção
+            </h1>
+
+            {loading &&
+                <p>Carregando registros...</p>
+            }
+
+            {!loading && manutencoes.length === 0 && (
+                <p>Nenhuma solicitação aberta no momento.</p>
+            )}
+
+            <ul className="trip-list" style={{ listStyle: 'none', padding: 0 }}>
+                {
+                    manutencoes.map(m => (
+                        <li
+                            className="trip-card"
+                            key={m.id}
+                        >
+                            <div className="trip-nome">
+                                Equipamento: {m.idEquipamento}
+                            </div>
+
+                            <div className="trip-regime">
+                                Criticidade: {m.criticidade}
+                            </div>
+
+                            <div className="trip-periodo" style={{ marginTop: '8px' }}>
+                                <strong>Falha descrita:</strong> {m.descricaoFalha}
+                            </div>
+
+                            <div style={{ display: 'flex', gap: '10px', marginTop: '12px' }}>
+                                <button
+                                    className="btn-editar"
+                                    onClick={() => iniciarEdicao(m)}
+                                >
+                                    Editar
+                                </button>
+
+                                <button
+                                    className="btn-excluir"
+                                    onClick={() => handleExcluir(m.id)}
+                                >
+                                    Excluir
+                                </button>
+                            </div>
+                        </li>
+                    ))
+                }
+            </ul>
+
         </div>
-      </section>
-    </div>
-  );
+    )
 }

@@ -1,84 +1,164 @@
-.quemsomos-container {
-	max-width: 1100px;
-	margin: 0 auto;
-	padding: 36px 20px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	color: #1b263b;
+/* ==========================
+   VARIÁVEIS DE CORES (Tema Claro/Escuro)
+========================== */
+/* ==========================
+   VARIÁVEIS DE CORES (Tema Claro/Escuro)
+========================== */
+:root {
+    --qs-bg-container: transparent;
+    --qs-bg-card: #ffffff;
+    --qs-border-card: #e6eef9;
+    --qs-bg-hero: linear-gradient(90deg, #e9f2ff 0%, #f7fbff 100%);
+    --qs-border-hero: #d6e9ff;
+    --qs-bg-vision-values: #f3f9ff;
+    --qs-border-vision-values: #dbeefc;
+    
+    --qs-text-primary: #1b263b;
+    --qs-text-secondary: #356089;
+    --qs-text-title: #003366;
+    --qs-text-subtitle: #004d99;
 }
 
+/* Seletor universal para Modo Escuro:
+   Seu sistema provavelmente ativa uma dessas classes no body, html ou app container.
+*/
+body.dark,
+body.dark-mode,
+body.dark-theme,
+.dark,
+.dark-mode,
+.dark-theme,
+[data-theme='dark'] {
+    --qs-bg-card: #111c3a !important;
+    --qs-border-card: #1e293b !important;
+    --qs-bg-hero: linear-gradient(90deg, #121e42 0%, #172554 100%) !important;
+    --qs-border-hero: #1e293b !important;
+    --qs-bg-vision-values: #1e293b !important;
+    --qs-border-vision-values: #334155 !important;
+    
+    --qs-text-primary: #f8fafc !important;
+    --qs-text-secondary: #94a3b8 !important;
+    --qs-text-title: #38bdf8 !important;
+    --qs-text-subtitle: #60a5fa !important;
+}
+/* Detecta o Modo Escuro. Ajuste a classe se seu projeto usar algo diferente de '.dark' */
+:global(.dark), .dark, [data-theme='dark'] {
+    --qs-bg-card: #111c3a;
+    --qs-border-card: #1e293b;
+    --qs-bg-hero: linear-gradient(90deg, #121e42 0%, #172554 100%);
+    --qs-border-hero: #1e293b;
+    --qs-bg-vision-values: #1e293b;
+    --qs-border-vision-values: #334155;
+    
+    --qs-text-primary: #f8fafc;
+    --qs-text-secondary: #94a3b8;
+    --qs-text-title: #38bdf8;
+    --qs-text-subtitle: #60a5fa;
+}
+
+/* ==========================
+   ESTILOS GERAIS
+========================== */
+.quemsomos-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--qs-text-primary);
+    transition: color 0.3s;
+}
+
+/* ==========================
+   HERO / CABEÇALHO
+========================== */
 .qs-hero {
-	text-align: center;
-	padding: 28px 12px;
-	background: linear-gradient(90deg, #e9f2ff 0%, #f7fbff 100%);
-	border-radius: 10px;
-	margin-bottom: 28px;
-	border: 1px solid #d6e9ff;
+    text-align: center;
+    padding: 28px 12px;
+    background: var(--qs-bg-hero);
+    border-radius: 10px;
+    margin-bottom: 28px;
+    border: 1px solid var(--qs-border-hero);
+    transition: background 0.3s, border-color 0.3s;
 }
 
 .qs-hero h1 {
-	margin: 0 0 8px 0;
-	color: #003366;
-	font-size: 2rem;
+    margin: 0 0 8px 0;
+    color: var(--qs-text-title);
+    font-size: 2rem;
+    transition: color 0.3s;
 }
 
 .qs-hero .lead {
-	margin: 0;
-	color: #356089;
+    margin: 0;
+    color: var(--qs-text-secondary);
+    transition: color 0.3s;
 }
 
+/* ==========================
+   SEÇÕES PRINCIPAIS
+========================== */
 .qs-missao,
 .qs-timeline,
 .qs-team {
-	margin: 24px 0;
-	background: #ffffff;
-	padding: 20px;
-	border-radius: 8px;
-	border: 1px solid #e6eef9;
+    margin: 24px 0;
+    background: var(--qs-bg-card);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--qs-border-card);
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .qs-missao h2,
 .qs-timeline h2,
 .qs-team h2 {
-	color: #004d99;
-	margin-bottom: 12px;
+    color: var(--qs-text-subtitle);
+    margin-bottom: 12px;
+    transition: color 0.3s;
 }
 
+/* ==========================
+   VISÃO E VALORES (Grid)
+========================== */
 .qs-vision-values {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 20px;
-	margin: 24px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0;
 }
 
 .qs-vision, .qs-values {
-	background: #f3f9ff;
-	padding: 18px;
-	border-radius: 8px;
-	border: 1px solid #dbeefc;
+    background: var(--qs-bg-vision-values);
+    padding: 18px;
+    border-radius: 8px;
+    border: 1px solid var(--qs-border-vision-values);
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .qs-values ul {
-	margin: 0;
-	padding-left: 18px;
+    margin: 0;
+    padding-left: 18px;
 }
 
 .qs-timeline ol {
-	margin: 0;
-	padding-left: 18px;
+    margin: 0;
+    padding-left: 18px;
 }
 
+/* ==========================
+   RESPONSIVIDADE
+========================== */
 @media (max-width: 768px) {
-	.qs-vision-values {
-		grid-template-columns: 1fr;
-	}
+    .qs-vision-values {
+        grid-template-columns: 1fr;
+    }
 
-	.qs-hero h1 {
-		font-size: 1.6rem;
-	}
+    .qs-hero h1 {
+        font-size: 1.6rem;
+    }
 }
 
 @media (max-width: 480px) {
-	.quemsomos-container {
-		padding: 18px 10px;
-	}
+    .quemsomos-container {
+        padding: 18px 10px;
+    }
 }
