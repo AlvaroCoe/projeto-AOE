@@ -18,7 +18,6 @@ public class IncidentesController {
     @Autowired
     private IncidentesService service;
 
-    // MÉTODO ADICIONADO: Retorna a lista completa convertida em DTO
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<IncidentesResponseDTO> listar() {
@@ -29,5 +28,19 @@ public class IncidentesController {
     @ResponseStatus(HttpStatus.CREATED)
     public IncidentesResponseDTO salvar(@RequestBody @Valid IncidentesRequestDTO dto) {
         return service.salvar(dto);
+    }
+
+    // ATUALIZAR UM INCIDENTE EXISTENTE
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public IncidentesResponseDTO atualizar(@PathVariable Long id, @RequestBody @Valid IncidentesRequestDTO dto) {
+        return service.atualizar(id, dto);
+    }
+
+    // DELETAR UM INCIDENTE
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable Long id) {
+        service.deletar(id);
     }
 }
