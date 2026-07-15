@@ -1,213 +1,387 @@
 /* ==========================================================================
-   CONTAINER PRINCIPAL E CONFIGURAÇÃO DE CORES
+   CONFIGURAÇÕES GERAIS E TOKENS DE DESIGN
    ========================================================================== */
 .incidentes-container {
-    max-width: 1400px;
-    width: 95%;
-    margin: 40px auto;
-    padding: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-    /* Pega o texto branco/claro do seu tema escuro automaticamente */
-    color: var(--text) !important;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--text) !important;
+  box-sizing: border-box;
+}
+
+.incidentes-container * {
+  box-sizing: border-box;
 }
 
 /* ==========================================================================
-   CABEÇALHO / HERO
+   INTRODUÇÃO (Textos do Topo)
    ========================================================================== */
-.incidentes-header {
-    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-    border-radius: 18px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+.incidentes-intro {
+  margin-bottom: 2.5rem;
+  text-align: left;
+  color: white !important;
 }
 
-.incidentes-header h1 {
-    font-size: 2.3rem;
-    margin: 0 0 10px 0;
-    color: #ffffff !important; /* Sempre branco para contrastar no topo */
+.incidentes-intro h1 {
+  color: var(--text);
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.025em;
 }
 
-.categoria {
-    font-size: 1rem;
-    opacity: .9;
-    color: #ffffff !important;
+.dark .incidentes-intro h1 {
+  color: #ffffff !important;
+}
+
+.incidentes-intro p {
+  color: var(--text);
+  opacity: 0.8;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 800px;
+}
+
+.dark .incidentes-intro p {
+  color: #cbd5e1 !important;
+  opacity: 1;
 }
 
 /* ==========================================================================
-   LAYOUT GRID
+   CARDS (Caixa Centralizada do Formulário)
    ========================================================================== */
-.incidentes-main {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 30px;
-    align-items: flex-start;
+.incidentes-card {
+  background: var(--card) !important;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  margin: 0 auto 3.5rem auto; 
+  max-width: 550px; 
+  width: 100%;
 }
 
-/* Grandes Blocos: Formulário da Esquerda e Bloco de Instruções da Direita */
-.formulario-section,
-.informacoes-section {
-    /* Troca para o fundo escuro do seu projeto (#0f172a) automaticamente */
-    background: var(--card) !important; 
-    border-radius: 18px;
-    padding: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 6px 20px rgba(0,0,0,.15);
-    transition: background-color 0.3s;
+.dark .incidentes-card {
+  background: #111c30 !important; 
+  border-color: #334155;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
-/* Título principal do bloco da direita */
-.informacoes-section h2 {
-    margin-top: 0;
-    margin-bottom: 20px;
-    color: var(--text) !important;
+.incidentes-card h2 {
+  color: var(--text) !important;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+.dark .incidentes-card h2 {
+  color: #ffffff !important;
 }
 
 /* ==========================================================================
-   LABELS (Nível de Gravidade, Plataforma Afetada, etc)
+   FORMULÁRIO E INPUTS
    ========================================================================== */
-.form-group label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    /* Garante que o texto acima dos inputs fique visível (branco no dark) */
-    color: var(--text) !important; 
+.incidentes-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
 }
 
-.obrigatorio {
-    color: #ef4444;
+.incidentes-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.incidentes-form-group label {
+  color: var(--text) !important;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.dark .incidentes-form-group label {
+  color: #ffffff !important;
+}
+
+.incidentes-input,
+.incidentes-textarea,
+.incidentes-form select {
+  width: 100% !important;
+  display: block;
+  padding: 0.85rem 1rem !important;
+  font-size: 1rem !important;
+  font-family: inherit;
+  color: var(--text) !important;
+  background-color: var(--bg) !important;
+  border: 1.5px solid #0066cc !important;
+  border-radius: 6px !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  height: auto;
+}
+
+.dark .incidentes-input,
+.dark .incidentes-textarea,
+.dark .incidentes-form select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #0066cc !important;
+}
+
+.incidentes-input:focus,
+.incidentes-textarea:focus,
+.incidentes-form select:focus {
+  outline: none !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2) !important;
+}
+
+.incidentes-input::placeholder,
+.incidentes-textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+.dark .incidentes-input::placeholder,
+.dark .incidentes-textarea::placeholder {
+  color: #64748b !important;
+}
+
+.incidentes-textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
 /* ==========================================================================
-   INPUTS, SELECTS E TEXTAREAS
+   BOTÕES DO FORMULÁRIO (Igual ao do seu print)
    ========================================================================== */
-.incidentes-form input,
-.incidentes-form select,
-.incidentes-form textarea {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #0066cc;
-    border-radius: 10px;
-    font-size: 15px;
-    box-sizing: border-box;
-    /* Injeta o fundo mais escuro (#020617) no campo e o texto correto */
-    background-color: var(--bg) !important;
-    color: var(--text) !important;
-    transition: background-color 0.3s, border-color 0.3s;
+.form-actions-row {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
-.incidentes-form input:focus,
-.incidentes-form select:focus,
-.incidentes-form textarea:focus {
-    outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37,99,235,.25);
+.incidentes-button {
+  flex: 1;
+  background-color: #0066cc !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 1.0rem !important;
+  padding: 0.875rem 1.25rem !important;
+  border: none !important;
+  border-radius: 30px !important; /* Arredondamento do botão principal */
+  cursor: pointer !important;
+  transition: background-color 0.2s ease, transform 0.1s ease !important;
+  text-align: center;
 }
 
-/* ==========================================================================
-   CARDS DE INSTRUÇÃO INTERNOS (Gravidade, Plataforma, Descrição...)
-   ========================================================================== */
-.instrucoes-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+.incidentes-button:hover {
+  background-color: #1e3a8a !important;
 }
 
-.instrucao-card {
-    /* Fundo ligeiramente diferente para destacar do bloco principal */
-    background: var(--bg) !important; 
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 14px;
-    padding: 18px;
+.incidentes-button-secondary {
+  flex: 1;
+  background-color: #e5e7eb !important;
+  color: #1f2937 !important;
+  font-weight: 600 !important;
+  font-size: 1.0rem !important;
+  padding: 0.875rem 1.25rem !important;
+  border: none !important;
+  border-radius: 30px !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s ease, transform 0.1s ease !important;
+  text-align: center;
 }
 
-.instrucao-card h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: var(--text) !important; /* Títulos internos visíveis */
-    font-weight: bold;
+.dark .incidentes-button-secondary {
+  background-color: #334155 !important;
+  color: #f8fafc !important;
 }
 
-.instrucao-card p {
-    margin: 0;
-    color: var(--text) !important;
-    opacity: 0.8; /* Texto explicativo um pouco mais suave, mas totalmente legível */
-    line-height: 1.6;
-    font-size: 14px;
+.incidentes-button-secondary:hover {
+  background-color: #d1d5db !important;
 }
 
 /* ==========================================================================
-   ALERTAS INTERNOS
+   ALERTAS
    ========================================================================== */
 .alerta-critico {
-    background: #292524 !important; /* Fundo escuro sutil para o aviso */
-    color: #fde047 !important; /* Texto amarelo de atenção */
-    border-left: 5px solid #eab308;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 25px;
-    font-weight: 600;
+  background: #292524 !important;
+  color: #fde047 !important;
+  border-left: 5px solid #eab308;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-/* Se o modo claro estiver ativo, reverte o alerta para o padrão amarelo claro */
 :root:not(.dark) .alerta-critico {
-    background: #fff3cd !important;
-    color: #856404 !important;
+  background: #fff3cd !important;
+  color: #856404 !important;
+}
+
+.mensagem {
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.mensagem-sucesso {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+  border: 1px solid #10b981;
+}
+
+.mensagem-erro {
+  background-color: #fee2e2 !important;
+  color: #991b1b !important;
+  border: 1px solid #f43f5e;
 }
 
 /* ==========================================================================
-   BOTÕES
+   ESTILIZAÇÃO DA LISTA DE REPORTES (PADRÃO MANUTENÇÃO)
    ========================================================================== */
-.form-actions {
-    display: flex;
-    gap: 15px;
-    margin-top: 10px;
+.lista-incidentes-section {
+  margin-top: 3.5rem;
 }
 
-.btn-submit,
-.btn-reset {
-    border: none;
-    padding: 14px 30px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 15px;
-    transition: background-color 0.2s;
+.lista-incidentes-section h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.5rem;
 }
 
-.btn-submit {
-    background: #0066cc;
-    color: white;
+/* O container da lista não usa mais grid de duas colunas, empilhando em uma única */
+.incidentes-lista-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
 }
 
-.btn-submit:hover {
-    background: #1e3a8a;
+/* Card formatado exatamente como o de Ativos em Manutenção */
+.incidente-card-item-manutencao {
+  background: var(--card) !important;
+  border: 1.5px solid #0066cc !important; /* Borda azul arredondada característica */
+  border-radius: 14px !important;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  width: 100%;
 }
 
-.btn-reset {
-    background: #334155;
-    color: #f8fafc;
+.dark .incidente-card-item-manutencao {
+  background: #111c30 !important;
 }
 
-.btn-reset:hover {
-    background: #475569;
+/* Estilo para os botões de Ação discretos no canto esquerdo */
+.incidente-action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
 
-:root:not(.dark) .btn-reset {
-    background: #e5e7eb;
-    color: #111827;
+.btn-acao-editar {
+  background-color: #0066cc !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  padding: 0.5rem 1.25rem !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s;
+}
+
+.btn-acao-editar:hover {
+  background-color: #1e3a8a !important;
+}
+
+.btn-acao-excluir {
+  background-color: #cc2424 !important;
+  color: white !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  padding: 0.5rem 1.25rem !important;
+  border: none !important;
+  border-radius: 6px !important;
+  cursor: pointer !important;
+  transition: background-color 0.2s;
+}
+
+.btn-acao-excluir:hover {
+  background-color: #991b1b !important;
+}
+
+/* ==========================================================================
+   SEÇÃO INFORMATIVA (RODAPÉ)
+   ========================================================================== */
+.incidentes-processo-secao {
+  margin-top: 4rem;
+}
+
+.incidentes-processo-secao h2 {
+  color: var(--text) !important;
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.incidentes-grid-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.incidentes-card-info {
+  background: var(--card) !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.incidentes-card-info h3 {
+  color: var(--text) !important;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.incidentes-card-info p {
+  color: var(--text) !important;
+  opacity: 0.8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
 }
 
 /* ==========================================================================
    RESPONSIVIDADE
    ========================================================================== */
-@media (max-width: 1100px) {
-    .incidentes-main { grid-template-columns: 1fr; }
+@media (max-width: 1024px) {
+  .incidentes-grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-    .form-row, .instrucoes-grid, .form-actions { grid-template-columns: 1fr; flex-direction: column; }
-    .btn-submit, .btn-reset { width: 100%; }
-    .incidentes-header h1 { font-size: 1.8rem; }
+  .incidentes-grid-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
